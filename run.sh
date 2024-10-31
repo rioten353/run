@@ -69,7 +69,7 @@ function is_package_installed() {
 }
 
 # List of packages to install
-packages=("fish" "git" "ranger" "ncdu" "htop" "luarocks" "neofetch" "tmux" "make" "g++")
+packages=("fish" "git" "ranger" "ncdu" "htop" "luarocks" "neofetch" "tmux" "make" "g++" "ripgrep")
 
 for package in "${packages[@]}"; do
     if ! is_package_installed "$package"; then
