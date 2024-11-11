@@ -224,8 +224,7 @@ if ! command -v uv &> /dev/null; then
 
   if [[ $response =~ ^([Yy]|[Yy]es)$ ]]; then
     # User confirms installation
-
-	curl -LsSf https://astral.sh/uv/install.sh | sh
+    curl -LsSf https://astral.sh/uv/install.sh | sh
 
     echo "uv installation complete."
   else
@@ -234,3 +233,6 @@ if ! command -v uv &> /dev/null; then
 else
   echo "uv is already installed."
 fi
+
+#refresh bashrc
+source ~/.bashrc
