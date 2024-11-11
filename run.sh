@@ -173,15 +173,7 @@ if ! command -v dart &> /dev/null; then
     # Download Dart installer
     curl -LO "$download_link"
 
-    # Attempt to install using apt or dpkg
-    if [[ $(command -v apt &> /dev/null) ]]; then
-      sudo apt install -y ./dart_*.deb  # Use apt if available
-    elif [[ $(command -v dpkg &> /dev/null) ]]; then
-      sudo dpkg -i ./dart_*.deb  # Use dpkg if available
-    else
-      echo "Warning: Unable to use apt or dpkg. Please follow the manual installation instructions."
-      echo "Downloaded installer: ./dart_*.deb"
-    fi
+    sudo dpkg -i ./dart_*.deb
 
     rm -rf dart_*.deb  # Remove downloaded installer
 
@@ -193,9 +185,9 @@ else
   echo "Dart is already installed."
 fi
 
-
-###
-#!/bin/bash
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#Install python
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 # Check for Python 3.13 and pip3
 if ! command -v python3.13 &> /dev/null; then
@@ -218,4 +210,27 @@ if ! command -v python3.13 &> /dev/null; then
   fi
 else
   echo "Python 3.13 is already installed."
+fi
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#Install uv
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+# Check if uv is already installed
+if ! command -v uv &> /dev/null; then
+  # uv is not installed
+  echo "uv is not currently installed."
+  read -r -p "Would you like to install uv now? (y/N) " response
+
+  if [[ $response =~ ^([Yy]|[Yy]es)$ ]]; then
+    # User confirms installation
+
+	curl -LsSf https://astral.sh/uv/install.sh | sh
+
+    echo "uv installation complete."
+  else
+    echo "Skipping uv installation."
+  fi
+else
+  echo "uv is already installed."
 fi
