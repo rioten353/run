@@ -236,3 +236,20 @@ fi
 
 #refresh bashrc
 source ~/.bashrc
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#tmux
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+echo "tmux is not setup ."
+  read -r -p "Would you like to setup tmux? (y/N) " response
+
+  if [[ $response =~ ^([Yy]|[Yy]es)$ ]]; then
+    # User confirms installation
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+    mv tmux.conf ~/.tmux.conf
+
+    echo "tmux setup complete."
+  else
+    echo "Skipping tmux setup."
+  fi
